@@ -18,14 +18,6 @@ class Company_payment extends Model
         return $this->belongsTo(Company::class , 'company_id');
     }
 
-    public function logic_purchase()
-    {
 
-    }
-
-    public function logic_payment()
-    {
-
-    }
 
 }
