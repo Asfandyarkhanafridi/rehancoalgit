@@ -52,15 +52,8 @@ class Company_paymentController extends Controller
 
         $lastStatus = getLastStatus($company_id);
         $lastBalance = getLastBalance($company_id);
-        if ($lastStatus === 'credit') {
-            $credit = $amount;
-            $amount = $lastBalance + $credit;
-        }
 
-        else if($lastStatus == 'debit') {
-            $debit = $amount;
-            $amount = $lastBalance - $debit;
-        }
+
 
         $data['credit'] = $credit;
         $data['debit']  = $debit;

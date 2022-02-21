@@ -69,15 +69,7 @@ class PurchaseController extends Controller
         $lastStatusPurchase = getLastStatusPurchase($company_id);
         $lastBalancePurchase = getLastBalancePurchase($company_id);
 
-        if (($lastStatusPurchase == 'credit')||($lastStatusPurchase == '')) {
-            $credit = $amount;
-            $amount = $lastBalancePurchase + $credit;
-        }
 
-        else if(($lastStatusPurchase == 'debit')||($lastStatusPurchase == '')) {
-            $debit = $amount;
-            $amount = $lastBalancePurchase - $debit;
-        }
 
         $company_data['credit'] = $credit;
         $company_data['debit']  = $debit;
