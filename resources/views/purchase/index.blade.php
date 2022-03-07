@@ -167,7 +167,8 @@
                                             <center><td>
 
                                                     <!-- Edit Icon  -->
-                                                    <center><a href="/purchase/{{$purchase->id}}" class="edit" title="Edit" data-toggle="modal" data-target="#purchase{{$purchase->id}}"><i class="material-icons">edit</i></a>
+                                                    <center>
+                                                        <a href="/purchase/{{$purchase->id}}" class="edit" title="Edit" data-toggle="modal" data-target="#purchase{{$purchase->id}}"><i class="material-icons">edit</i></a>
                                                         <a href="{{route('purchase.destroy',$purchase->id)}}" class="delete" title="Delete"><i class="material-icons">delete</i></a>
                                                     </center>
                                                     <!-- Edit Modal Start -->

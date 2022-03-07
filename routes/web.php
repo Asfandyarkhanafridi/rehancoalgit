@@ -73,3 +73,5 @@ Route::get('/party_payment/destroy/{party_payment}', [App\Http\Controllers\Party
 Route::get('/party_payment/detail/{party}', [App\Http\Controllers\Party_paymentController::class, 'show'])->name('party_payment.show');
 Route::get('/party_payment/detail', [App\Http\Controllers\Party_paymentController::class, 'grandTotal'])->name('party_payment.grandTotal');
 Route::get('/party_payment/detail', [App\Http\Controllers\Party_paymentController::class, 'dayClose'])->name('party_payment.dayClose');
+
+Route::get('/pdf_check',[\App\Http\Controllers\PdfController::class,'viewPdf'])->name('check.pdf');

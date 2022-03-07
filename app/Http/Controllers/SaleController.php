@@ -23,8 +23,10 @@ class SaleController extends Controller
     {
 
 
-        $companies = Sale::getStock();
-        $qualities = Sale::getStock();
+        $companiesStock = Sale::getStock();
+        $qualitiesStock = Sale::getStock();
+        $companies = Company::all();
+        $qualities = Quality::all();
         $parties = Party::all();
         $sales = Sale::all();
         return view('/sale/index',['sales'=>$sales,'parties'=>$parties,'companies'=>$companies,'qualities'=>$qualities]);
@@ -60,6 +62,7 @@ class SaleController extends Controller
         function getLastStatusSale($party_id) {
             return DB::table('party_payments')->where('party_id', $party_id)->orderBy('id', 'desc')->take(1)->value('status');
         }
+
         //Data Insertion in Party_payments Table
         $party_data = [
             'party_id'    => $data['party_id'],
