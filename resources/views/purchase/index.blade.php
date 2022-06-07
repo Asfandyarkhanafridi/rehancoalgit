@@ -165,7 +165,6 @@
                                             <td>{{ $purchase->detail }}</td>
                                             <td>{{ $purchase->amount }}</td>
                                             <center><td>
-
                                                     <!-- Edit Icon  -->
                                                     <center>
                                                         <a href="/purchase/{{$purchase->id}}" class="edit" title="Edit" data-toggle="modal" data-target="#purchase{{$purchase->id}}"><i class="material-icons">edit</i></a>

@@ -56,7 +56,5 @@ group by
 	company_name,
 	quality
 ');
-
     }
-
 }
