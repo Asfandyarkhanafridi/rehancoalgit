@@ -20,8 +20,6 @@ class CompanyController extends Controller
     public function index()
     {
         // dd('here');
-
-        
         $companies = Company::all();
 
         return response()->json($companies,200);

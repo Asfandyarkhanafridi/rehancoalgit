@@ -75,7 +75,7 @@ class AuthController extends Controller
             'password' => 'string|min:8',
         ]);
 
-        if(validator->fails()){
+        if($validator->fails()){
             return response()->json([
                 'message' => 'Registration Failed'
             ]);
