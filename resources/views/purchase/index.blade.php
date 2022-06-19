@@ -37,7 +37,7 @@
                                         <label class="control-label col-sm-5 required">Company</label>
                                         <div class="col-sm-12" style="text-align: left; ">
                                         <select class="form-select" name="company_id" id="select1" style="width: 100%; child-align: left">
-                                            <option value="-1">Select Company</option>
+                                            <option selected disabled>Select Company</option>
                                             @foreach($companies as $c)
                                             <option value="{{$c->id}}">{{$c->company_name}}</option>
                                             @endforeach
@@ -48,7 +48,7 @@
                                         <label class="control-label col-sm-5 required">Quality</label>
                                         <div class="col-sm-12">
                                         <select class="form-select" name="quality_id" id="select2" style="width: 100%">
-                                            <option value="-1">Select Quality</option>
+                                            <option selected disabled>Select Quality</option>
                                             @foreach($qualities as $q)
                                                 <option value="{{$q->id}}">{{$q->quality}}</option>
                                             @endforeach
@@ -125,12 +125,6 @@
                                         <th>ID</th>
                                         <th>Entry Date</th>
                                         <th>Company</th>
-                                        <th>Quality</th>
-                                        <th>Rate</th>
-                                        <th>Weight</th>
-                                        <th>Load</th>
-                                        <th>Mate</th>
-                                        <th>Detail</th>
                                         <th>Amount</th>
                                         <th width="7%">Action</th>
                                     </tr>
@@ -140,12 +134,6 @@
                                         <th>ID</th>
                                         <th>Entry Date</th>
                                         <th>Company</th>
-                                        <th>Quality</th>
-                                        <th>Rate</th>
-                                        <th>Weight</th>
-                                        <th>Load</th>
-                                        <th>Mate</th>
-                                        <th>Detail</th>
                                         <th>Amount</th>
                                         <th width="7%">Action</th>
                                     </tr>
@@ -157,16 +145,14 @@
                                             <td>{{ $purchase->id }}</td>
                                             <td>{{date('d-m-Y', strtotime($purchase->date))}}</td>
                                             <td>{{ $purchase->company->company_name }}</td>
-                                            <td>{{ $purchase->quality->quality }}</td>
-                                            <td>{{ $purchase->rate }}</td>
-                                            <td>{{ $purchase->weight }}</td>
-                                            <td>{{ $purchase->load }}</td>
-                                            <td>{{ $purchase->mate }}</td>
-                                            <td>{{ $purchase->detail }}</td>
-                                            <td>{{ $purchase->amount }}</td>
+                                            <?php
+                                                $sumAmount = \App\Models\Purchase::where('company_id', $purchase->company_id)->sum('amount');
+                                            ?>
+                                            <td>{{ $sumAmount }}</td>
                                             <center><td>
                                                     <!-- Edit Icon  -->
                                                     <center>
+                                                        <a href="{{route('purchase.show',$purchase->id)}}" class="visibility" title="Show"><i class="material-icons">S</i></a>
                                                         <a href="/purchase/{{$purchase->id}}" class="edit" title="Edit" data-toggle="modal" data-target="#purchase{{$purchase->id}}"><i class="material-icons">edit</i></a>
                                                         <a href="{{route('purchase.destroy',$purchase->id)}}" class="delete" title="Delete"><i class="material-icons">delete</i></a>
                                                     </center>
@@ -193,7 +179,7 @@
                                                                         <div class="form-group row">
                                                                             <label class="control-label col-sm-5 required">Company</label>
                                                                             <div class="col-sm-12" style="text-align: left !important;">
-                                                                                <select class="form-select" aria-label="Default select example" name="company_id" >
+                                                                                <select class="form-select" aria-label="Default select example" name="company_id" required>
                                                                                 @foreach($companies as $c)
                                                                                         <option value="{{$c->id}}">{{$c->company_name}}</option>
                                                                                 @endforeach
@@ -203,7 +189,7 @@
                                                                         <div class="form-group row">
                                                                             <label class="control-label col-sm-5 required">Quality</label>
                                                                             <div class="col-sm-12">
-                                                                                <select class="form-select" aria-label="Default select example" name="quality_id">
+                                                                                <select class="form-select" aria-label="Default select example" name="quality_id" required>
                                                                                     @foreach($qualities as $q)
                                                                                         <option value="{{$q->id}}">{{$q->quality}}</option>
                                                                                     @endforeach

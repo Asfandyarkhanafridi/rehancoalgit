@@ -24,37 +24,37 @@ class Stock extends Model
     static function stockMaintenance()
     {
           return  DB::select('
-select
-       companies.company_name,
-	   qualities.quality,
-	SUM(temp.totalWeight) as stock
-from
-	(
-	select
-		purchases.company_id,
-		purchases.quality_id,
-		SUM(purchases.weight) as totalWeight
-	from
-		purchases
-	group by
-		purchases.company_id,
-		purchases.quality_id
-union
-	select
-		sales.company_id,
-		sales.quality_id,
-		SUM(sales.weight * -1) as totalWeight
-	from
-		sales
-	group by
-		sales.company_id,
-		sales.quality_id
-) as temp
-inner join companies on companies.id = temp.company_id
-inner join qualities on qualities.id = temp.quality_id
-group by
-	company_name,
-	quality
+									select
+									       companies.company_name,
+										   qualities.quality,
+										SUM(temp.totalWeight) as stock
+									from
+										(
+										select
+											purchases.company_id,
+											purchases.quality_id,
+											SUM(purchases.weight) as totalWeight
+										from
+											purchases
+										group by
+											purchases.company_id,
+											purchases.quality_id
+									union
+										select
+											sales.company_id,
+											sales.quality_id,
+											SUM(sales.weight * -1) as totalWeight
+										from
+											sales
+										group by
+											sales.company_id,
+											sales.quality_id
+									) as temp
+									inner join companies on companies.id = temp.company_id
+									inner join qualities on qualities.id = temp.quality_id
+									group by
+										company_name,
+										quality
 ');
     }
 }

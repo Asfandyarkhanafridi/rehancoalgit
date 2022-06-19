@@ -47,12 +47,14 @@ Route::put('/quality/update/{quality}', [App\Http\Controllers\QualityController:
 //purchase
 Route::get('/purchase', [App\Http\Controllers\PurchaseController::class, 'index'])->name('purchase.index');
 Route::post('/purchase', [App\Http\Controllers\PurchaseController::class, 'store'])->name('purchase.store');
+Route::get('/purchase/show/{purchase}', [App\Http\Controllers\PurchaseController::class, 'show'])->name('purchase.show');
 Route::put('/purchase/update/{purchase}', [App\Http\Controllers\PurchaseController::class, 'update'])->name('purchase.update');
 Route::get('/purchase/destroy/{purchase}', [App\Http\Controllers\PurchaseController::class, 'destroy'])->name('purchase.destroy');
 
 //sale
 Route::get('/sale', [App\Http\Controllers\SaleController::class, 'index'])->name('sale.index');
 Route::post('/sale', [App\Http\Controllers\SaleController::class, 'store'])->name('sale.store');
+Route::get('/sale/show/{sale}', [App\Http\Controllers\SaleController::class, 'show'])->name('sale.show');
 Route::put('/sale/update/{sale}', [App\Http\Controllers\SaleController::class, 'update'])->name('sale.update');
 Route::get('/sale/destroy/{sale}', [App\Http\Controllers\SaleController::class, 'destroy'])->name('sale.destroy');
 
@@ -62,8 +64,6 @@ Route::post('/company_payment', [App\Http\Controllers\Company_paymentController:
 Route::put('/company_payment/update/{company_payment}', [App\Http\Controllers\Company_paymentController::class, 'update'])->name('company_payment.update');
 Route::get('/company_payment/destroy/{company_payment}', [App\Http\Controllers\Company_paymentController::class, 'destroy'])->name('company_payment.destroy');
 Route::get('/company_payment/detail/{company}', [App\Http\Controllers\Company_paymentController::class, 'show'])->name('company_payment.show');
-Route::get('/company_payment/detail', [App\Http\Controllers\Company_paymentController::class, 'grandTotal'])->name('company_payment.grandTotal');
-Route::get('/company_payment/detail', [App\Http\Controllers\Company_paymentController::class, 'dayClose'])->name('company_payment.dayClose');
 
 //Party Payment
 Route::get('/party_payment', [App\Http\Controllers\Party_paymentController::class, 'index'])->name('party_payment.index');
@@ -71,7 +71,5 @@ Route::post('/party_payment', [App\Http\Controllers\Party_paymentController::cla
 Route::put('/party_payment/update/{party_payment}', [App\Http\Controllers\Party_paymentController::class, 'update'])->name('party_payment.update');
 Route::get('/party_payment/destroy/{party_payment}', [App\Http\Controllers\Party_paymentController::class, 'destroy'])->name('party_payment.destroy');
 Route::get('/party_payment/detail/{party}', [App\Http\Controllers\Party_paymentController::class, 'show'])->name('party_payment.show');
-Route::get('/party_payment/detail', [App\Http\Controllers\Party_paymentController::class, 'grandTotal'])->name('party_payment.grandTotal');
-Route::get('/party_payment/detail', [App\Http\Controllers\Party_paymentController::class, 'dayClose'])->name('party_payment.dayClose');
 
 Route::get('/pdf_check',[\App\Http\Controllers\PdfController::class,'viewPdf'])->name('check.pdf');

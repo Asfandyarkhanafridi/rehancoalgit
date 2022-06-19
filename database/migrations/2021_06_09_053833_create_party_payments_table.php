@@ -11,10 +11,6 @@ class CreatePartypaymentsTable extends Migration
         Schema::create('party_payments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('party_id');
-            $table->unsignedBigInteger('sale_id')->nullable();
-            $table->integer('credit');
-            $table->integer('debit');
-            $table->string('status');
             $table->integer('amount');
             $table->integer('mode');
             $table->string('detail');

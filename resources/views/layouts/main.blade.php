@@ -26,6 +26,9 @@
             color:red;
             padding-left:5px;
         }
+        table.table td a.visibility {
+            color: blue;
+        }
         table.table td a.delete {
             color: #E34724;
         }
@@ -43,7 +46,7 @@
     @include('layouts.nav')
 </header>
 <main>
-    <div id="layoutSidenav">
+    <div id="layoutSidenav" style=" @yield('layoutSidenav-style')">
     @include('layouts.sidebar')
         <div id="layoutSidenav_content">
     @yield('main-content')

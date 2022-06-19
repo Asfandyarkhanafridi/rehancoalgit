@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Company;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class CompanyController extends Controller
     public function index()
     {
         return view('/company/index')
-            ->with('companies', Company::orderBy('updated_at' , 'DESC')->get());
+            ->with('companies', Company::orderBy('updated_at', 'DESC')->get());
     }
 
     public function create()
@@ -46,11 +47,11 @@ class CompanyController extends Controller
 
     public function update(Request $request, Company $company)
     {
-       $data= $request->validate([
+        $data = $request->validate([
             'company_name' => 'required',
             'contact_person' => 'required',
         ]);
-       $company->update($data);
+        $company->update($data);
         return redirect()->back()->with('message', 'Company Updated!');
     }
 

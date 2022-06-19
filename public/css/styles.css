@@ -10867,7 +10867,6 @@ body {
 }
 
 #layoutSidenav {
-  display: flex;
 }
 #layoutSidenav #layoutSidenav_nav {
   flex-basis: 225px;
@@ -10878,7 +10877,6 @@ body {
 }
 #layoutSidenav #layoutSidenav_content {
   position: relative;
-  display: flex;
   flex-direction: column;
   justify-content: space-between;
   min-width: 0;

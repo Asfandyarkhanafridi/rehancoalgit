@@ -24,7 +24,6 @@ class CreateSalesTable extends Migration
             $table->integer('rate');
             $table->string('detail')->nullable();
             $table->string('amount')->nullable();
-            $table->string('status')->nullable();
             $table->timestamps();
             $table->timestamp("deleted_at")->nullable();
 

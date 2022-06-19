@@ -128,32 +128,16 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Automated Date</th>
                                     <th>Entry Date</th>
                                     <th>Party</th>
-                                    <th>Company</th>
-                                    <th>Quality</th>
-                                    <th>Truck</th>
-                                    <th>Weight</th>
-                                    <th>Rate</th>
-                                    <th>Detail</th>
-                                    <th>Amount</th>
                                     <th width="7%">Action</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Automated Date</th>
                                     <th>Entry Date</th>
                                     <th>Party</th>
-                                    <th>Company</th>
-                                    <th>Quality</th>
-                                    <th>Truck</th>
-                                    <th>Weight</th>
-                                    <th>Rate</th>
-                                    <th>Detail</th>
-                                    <th>Amount</th>
                                     <th width="7%">Action</th>
                                 </tr>
                                 </tfoot>
@@ -162,21 +146,13 @@
                                 @foreach($sales as $sale)
                                 <tr>
                                     <td>{{$sale->id ?? ''}}</td>
-                                    <td>{{$sale->created_at}}</td>
                                     <td>{{date('d-m-Y', strtotime($sale->date))}}</td>
                                     <td>{{$sale->party->party_name}}</td>
-                                    <td>{{$sale->company->company_name}}</td>
-                                    <td>{{$sale->quality->quality}}</td>
-                                    <td>{{$sale->truck}}</td>
-                                    <td>{{$sale->weight}}</td>
-                                    <td>{{$sale->rate}}</td>
-                                    <td>{{$sale->detail}}</td>
-                                    <td>{{$sale->amount}}</td>
-                                    <center><td>
+                                    <td>
                                             <!-- Edit Icon  -->
-                                            <center><a href="/sale/{{$sale->id}}" class="edit" title="Edit" data-toggle="modal" data-target="#sale{{$sale->id}}"><i class="material-icons">edit</i></a>
+                                                <a href="{{route('sale.show',$sale->id)}}" class="visibility" title="Show"><i class="material-icons">S</i></a>
+                                                <a href="/sale/{{$sale->id}}" class="edit" title="Edit" data-toggle="modal" data-target="#sale{{$sale->id}}"><i class="material-icons">edit</i></a>
                                                 <a href="{{route('sale.destroy',$sale->id)}}" class="delete" title="Delete"><i class="material-icons">delete</i></a>
-                                            </center>
                                             <!-- Edit Modal Start -->
                                             <div class="modal fade" id="sale{{$sale->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
@@ -200,8 +176,8 @@
                                                                 <div class="form-group row">
                                                                     <label class="control-label col-sm-5 required">Party</label>
                                                                     <div class="col-sm-12">
-                                                                        <select class="form-select" aria-label="Default select example" name="party_id" >
-                                                                            <option selected>Select Party</option>
+                                                                        <select class="form-select" aria-label="Default select example" name="party_id" required>
+                                                                            <option selected disabled>Select Party</option>
                                                                             @foreach($parties as $p)
                                                                                 <option value="{{$p->id}}">{{$p->party_name}}</option>
                                                                             @endforeach
@@ -211,8 +187,8 @@
                                                                 <div class="form-group row">
                                                                     <label class="control-label col-sm-5 required">Company</label>
                                                                     <div class="col-sm-12">
-                                                                        <select class="form-select" aria-label="Default select example" name="company_id" >
-                                                                            <option selected>Select Company</option>
+                                                                        <select class="form-select" aria-label="Default select example" name="company_id" required>
+                                                                            <option selected disabled>Select Company</option>
                                                                             @foreach($companies as $c)
                                                                                 <option value="{{$c->id}}">{{$c->company_name}}</option>
                                                                             @endforeach
@@ -222,8 +198,8 @@
                                                                 <div class="form-group row">
                                                                     <label class="control-label col-sm-5 required">Quality</label>
                                                                     <div class="col-sm-12">
-                                                                        <select class="form-select" aria-label="Default select example" name="quality_id" >
-                                                                            <option selected>Select Quality</option>
+                                                                        <select class="form-select" aria-label="Default select example" name="quality_id" required>
+                                                                            <option selected disabled>Select Quality</option>
                                                                             @foreach($qualities as $q)
                                                                                 <option value="{{$q->id}}">{{$q->quality}}</option>
                                                                             @endforeach

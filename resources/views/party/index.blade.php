@@ -1,13 +1,13 @@
 @extends('layouts.main')
 @section('title','Party')
-
+@section('layoutSidenav-style','display:block !important;')
 @section('main-content')
-    <div class="container-fluid" >
+    <div class="container-fluid">
         <div class="row container-fluid p-4">
-            <div class="col-sm-9" >
+            <div class="col-sm-8" >
                 <h1>Party</h1>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 <button class="btn btn-outline-success btn-lg custom" data-toggle="modal" data-target="#party">
                 Add Party
                 </button>
@@ -57,9 +57,9 @@
                         </div>
                     </div>
                 </div>
-
-            </div>
+            {{--Add Party Modal END--}}
         </div>
+    </div>
         <div class="row container-fluid">
             <div class="col-sm-12">
                 <div class="card mb-4">
