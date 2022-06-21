@@ -76,7 +76,7 @@
                                     <div class="form-group row">
                                         <label class="control-label col-sm-5 required">Mate</label>
                                         <div class="col-sm-12" style="text-align: left">
-                                                <input type="number" class="form-control" placeholder="Mate" name="mate" value="" required>
+                                            <input type="number" class="form-control" placeholder="Mate" name="mate" value="" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
