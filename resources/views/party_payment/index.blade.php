@@ -50,11 +50,29 @@
                                 </tfoot>
                                 <!-- This is Table Body -->
                                 <tbody>
+                                <?php
+                                $balance = 0;
+                                ?>
                                 @foreach($sales as $sale)
                                 <tr>
                                     <td>{{$sale->party->id}}</td>
                                     <td>{{$sale->party->party_name}}</td>
-                                    <td>{{ \App\Models\Party_payment::where('party_id', $sale->party->id)->orderBy('id', 'desc')->take(1)->value('amount') }}</td>
+                                    <td>
+                                        @foreach(collect(\App\Models\Party_payment::creditDebitRecordsParty($sale->party->id))->sortBy('created_at')->values() as $record)
+			                                <?php
+			                                if ( $record->isDebit == 0 ) {
+				                                $balance += $record->amount;
+			                                } else {
+				                                $balance -= $record->amount;
+			                                }
+			                                ?>
+                                            @if($loop->last && ($balance < 0))
+                                                {{abs($balance)}} Debit
+                                            @elseif($loop->last)
+                                                {{$balance}} Credit
+                                            @endif
+                                        @endforeach
+                                    </td>
                                     <td>
                                         <a href = "{{route('party_payment.show',$sale->party->id)}}" class="btn btn-outline-success">Payments</a>
                                     </td>

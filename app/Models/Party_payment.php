@@ -18,20 +18,20 @@ class Party_payment extends Model
         return $this->belongsTo(Party::class , 'party_id');
     }
     
-	public static function creditDebitRecordsParty(){
-		return DB::select('SELECT
+	public static function creditDebitRecordsParty($party_id){
+		return DB::select("SELECT
 								created_at,
                                 party_id,
                                 amount,
                                 0 as isDebit
-                            FROM sales
+                            FROM sales WHERE party_id = $party_id
                             UNION
                             SELECT
                             	created_at,
                                 party_id,
                                 amount,
                                 1 as isDebit
-                            FROM party_payments');
+                            FROM party_payments WHERE party_id = $party_id");
 	}
 	
 }

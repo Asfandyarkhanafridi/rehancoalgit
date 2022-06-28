@@ -50,15 +50,33 @@
                                 </tfoot>
                                 <!-- This is Table Body -->
                                 <tbody>
+                                <?php
+                                $balance = 0;
+                                ?>
                                 @foreach($purchases as $purchase)
-                                <tr>
-                                    <td>{{$purchase->company->id}}</td>
-                                    <td>{{$purchase->company->company_name}}</td>
-                                    <td>{{ \App\Models\Company_payment::where('company_id', $purchase->company->id)->orderBy('id', 'desc')->take(1)->value('amount') }}</td>
-                                    <td>
-                                        <a href = "{{route('company_payment.show',$purchase->company->id)}}" class="btn btn-outline-success">Details</a>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td>{{$purchase->company->id}}</td>
+                                        <td>{{$purchase->company->company_name}}</td>
+                                        <td>
+                                            @foreach(collect(\App\Models\Company_payment::creditDebitRecords($purchase->company->id))->sortBy('created_at')->values() as $record)
+                                                <?php
+                                                if ( $record->isDebit == 0 ) {
+                                                    $balance += $record->amount;
+                                                } else {
+                                                    $balance -= $record->amount;
+                                                }
+                                                ?>
+                                                @if($loop->last && ($balance < 0))
+                                                    {{abs($balance)}} Debit
+                                                    @elseif($loop->last)
+                                                    {{$balance}} Credit
+                                                @endif
+                                            @endforeach
+                                        </td>
+                                        <td>
+                                            <a href = "{{route('company_payment.show',$purchase->company->id)}}" class="btn btn-outline-success">Details</a>
+                                        </td>
+                                    </tr>
                                 @endforeach
                                 </tbody>
                                 <!-- Table Body End -->
@@ -69,7 +87,4 @@
             </div>
         </div>
     </div>
-
 @endsection
-
-

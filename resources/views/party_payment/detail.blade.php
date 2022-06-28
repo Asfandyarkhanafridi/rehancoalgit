@@ -127,7 +127,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            {{ ($balance) }}
+                                            {{ abs($balance) }}
                                         </td>
                                     </tr>
                                 @endforeach

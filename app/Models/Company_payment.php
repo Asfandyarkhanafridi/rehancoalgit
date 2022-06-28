@@ -19,20 +19,20 @@ class Company_payment extends Model
         return $this->belongsTo(Company::class , 'company_id');
     }
 
-	public static function creditDebitRecords(){
-    	return DB::select('SELECT
+	public static function creditDebitRecords($company_id){
+    	return DB::select("SELECT
 								created_at,
                                 company_id,
                                 amount,
                                 1 as isDebit
-                            FROM purchases
+                            FROM purchases WHERE company_id = $company_id
                             UNION
                             SELECT
                             	created_at,
                                 company_id,
                                 amount,
                                 0 as isDebit
-                            FROM company_payments');
+                            FROM company_payments WHERE company_id = $company_id");
 	}
 
 }

@@ -41,7 +41,7 @@ class Party_paymentController extends Controller
 	    $paymentsAmountParty = $paymentsParty->sum('amount');
 	    $salesAmount = $sales->sum('amount');
 	    $totalAmount = $salesAmount - $paymentsAmountParty;
-	    $creditDebitRecordsParty = \App\Models\Party_payment::creditDebitRecordsParty();
+	    $creditDebitRecordsParty = \App\Models\Party_payment::creditDebitRecordsParty($party->id);
 	    return view('party_payment.detail', ['party' => $party,'payments'=> $paymentsParty,'sales'=> $sales,
 		                                          'paymentsAmount'=> $paymentsAmountParty,'salesAmount'=>$salesAmount,
 												  'totalAmount'=>$totalAmount,'creditDebitRecordsParty'=>$creditDebitRecordsParty]);

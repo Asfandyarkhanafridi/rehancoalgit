@@ -99,36 +99,36 @@
                             $balance = 0;
                             ?>
                                 @foreach( collect($creditDebitRecords)->sortBy('created_at')->values() as $record)
-                                    <?php
-                                        if ( $record->isDebit == 0 ) {
-                                        	$balance += $record->amount;
-                                        } else {
-                                        	$balance -= $record->amount;
-                                        }
-                                    ?>
-                                <tr>
-                                    <td>{{$loop->iteration}}</td>
-                                    <td>
-                                        @if($record->isDebit == 0)
-                                            {{$record->created_at}}
-                                        @else
-                                            {{$record->created_at}}
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @if( $record->isDebit == 0 )
-                                            {{$record->amount}}
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @if( $record->isDebit == 1 )
-                                            {{$record->amount}}
-                                        @endif
-                                    </td>
-                                    <td>
-                                        {{ abs($balance) }}
-                                    </td>
-                                </tr>
+                                        <?php
+                                            if ( $record->isDebit == 0 ) {
+                                                $balance += $record->amount;
+                                            } else {
+                                                $balance -= $record->amount;
+                                            }
+                                        ?>
+                                    <tr>
+                                        <td>{{$loop->iteration}}</td>
+                                        <td>
+                                            @if($record->isDebit == 0)
+                                                {{$record->created_at}}
+                                            @else
+                                                {{$record->created_at}}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if( $record->isDebit == 0 )
+                                                {{$record->amount}}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if( $record->isDebit == 1 )
+                                                {{$record->amount}}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            {{ abs($balance) }}
+                                        </td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>
@@ -138,4 +138,19 @@
         </div>
     </div>
 </div>
+@endsection
+@section('more_scripts')
+<script>
+    let balance = {{abs($balance)}};
+    console.log(balance);
+    let url = "{{ route('latest.balance','') }}/"+balance;
+    $.ajax({
+        url: url,
+        type: 'get',
+        data: balance,
+        success: function (result) {
+            console.log(result);
+        }
+    });
+</script>
 @endsection

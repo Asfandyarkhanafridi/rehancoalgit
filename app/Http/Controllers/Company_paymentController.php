@@ -20,6 +20,8 @@ class Company_paymentController extends Controller
         $companies = Company::all();
         $company_payments = Company_payment::all();
         $purchases = Purchase::groupBy('company_id')->get();
+//        $balance = Company_paymentController::latestBalance();
+//        dd($balance);
         return view('/company_payment/index', ['company_payments' => $company_payments, 'purchases' => $purchases, 'companies' => $companies]);
     }
 
@@ -41,7 +43,7 @@ class Company_paymentController extends Controller
 	    $paymentsAmount = $payments->sum('amount');
 	    $purchasesAmount = $purchases->sum('amount');
 	    $totalAmount = $purchasesAmount - $paymentsAmount;
-	    $creditDebitRecords = \App\Models\Company_payment::creditDebitRecords();
+	    $creditDebitRecords = \App\Models\Company_payment::creditDebitRecords($company->id);
         return view('company_payment.detail', ['company' => $company,'payments'=> $payments,'purchases'=> $purchases,
 	                                                'paymentsAmount'=> $paymentsAmount,'purchasesAmount'=>$purchasesAmount,
                                                     'totalAmount'=>$totalAmount,'creditDebitRecords'=>$creditDebitRecords]);
@@ -67,5 +69,9 @@ class Company_paymentController extends Controller
         $data = Company_payment::where('company_payment', $company_payment);
         $company_payment->delete($data);
         return redirect()->back()->with('message', 'Company Payment  Deleted!');
+    }
+    
+    public static function latestBalance($balance){
+    	return $balance;
     }
 }

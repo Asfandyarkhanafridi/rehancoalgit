@@ -13,7 +13,7 @@ class CreatePartypaymentsTable extends Migration
             $table->unsignedBigInteger('party_id');
             $table->integer('amount');
             $table->integer('mode');
-            $table->string('detail');
+            $table->string('detail')->nullable();
             $table->timestamps();
             $table->timestamp("deleted_at")->nullable();
 
