@@ -4,10 +4,10 @@
 @section('main-content')
     <div class="container-fluid" >
         <div class="row container-fluid p-4">
-            <div class="col-sm-10">
+            <div class="mr-auto">
                 <h1>Company</h1>
             </div>
-            <div class="col-sm-2">
+            <div style="position: absolute; right: 0px">
                 <button
                     class="btn btn-outline-success btn-lg"
                     data-toggle="modal"
